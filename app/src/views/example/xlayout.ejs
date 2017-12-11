@@ -1,0 +1,13 @@
+<%= mergeJs(['global/thunder.js']) %>
+<%= unmergeJs(['global/lightning1.js', 'global/lightningx.js']) %>
+<%= unmergeJs('global/lightning2.js', {ver: false}) %>
+<%= unmergeJs('global/lightning3.js', {ver: 'path'}) %>
+<%= unmergeJs('global/lightning4.js', {ver: 'get', appId: 'default'}) %>
+<%= unmergeJs('global/lightning5.js', 'achilles') %>
+<%= mergeCss('global/rain.css') %>
+<%= unmergeCss('global/wind.css') %>
+<div style="font-size: 2rem;"><%= intro %></div>
+<%- css_tag('global/snow.css', {ver:'path'}) %><br/>
+<%- resource_link('global/profile.pdf', 'achilles') %><br/>
+
+<img src="/example/logo" width="80px" />
