@@ -1,6 +1,0 @@
-appId: sub-api
-appName: SUB-API
-prodLogBaseDir: /opt/tuniu/logs/app/nodejs/
-remote:
-    baseUrls:
-        INTERNAL_API: 'http://public-api.nm.olb.tuniu.org'
