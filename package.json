@@ -2,12 +2,14 @@
   "name": "api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./dist/app.js",
   "scripts": {
-    "tsc": "tsc",
-    "build": "tsc",
+    "gulp": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "gulp run-app"
+    "dev": "gulp dev",
+    "sit": "gulp run",
+    "pre": "gulp run",
+    "prod": "gulp run"
   },
   "repository": {
     "type": "git",
@@ -16,21 +18,33 @@
   "author": "huaqingfeng",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.17.1",
+    "chalk": "^2.3.0",
+    "ioredis": "^3.2.2",
+    "koa": "^2.4.1",
+    "koa-bodyparser": "^4.2.0",
+    "koa-router": "^7.3.0",
+    "pm2": "^2.9.1",
+    "reflect-metadata": "^0.1.10",
+    "routing-controllers": "^0.7.6",
+    "typedi": "^0.6.0",
+    "typings": "^2.1.1"
+  },
+  "devDependencies": {
     "@types/chalk": "^2.2.0",
     "@types/ioredis": "^3.2.4",
     "@types/koa": "^2.0.43",
+    "@types/koa-bodyparser": "^3.0.26",
     "@types/koa-router": "^7.0.27",
     "@types/node": "^8.5.1",
-    "chalk": "^2.3.0",
     "gulp": "^3.9.1",
     "gulp-shell": "^0.6.3",
     "gulp-watch": "^4.3.11",
-    "ioredis": "^3.2.2",
-    "koa": "^2.4.1",
-    "koa-router": "^7.3.0",
-    "pm2": "^2.9.1",
     "run-sequence": "^2.2.0",
-    "typescript": "^2.6.2",
-    "typings": "^2.1.1"
+    "ts-node": "^4.0.2",
+    "typescript": "^2.6.2"
+  },
+  "engines": {
+    "node": ">=8.9.3"
   }
 }

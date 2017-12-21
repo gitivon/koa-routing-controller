@@ -1,21 +1,19 @@
+import "reflect-metadata";
 import * as Koa from 'koa';
-import * as Router from 'koa-router';
-import User from './controllers/api/user';
+import { Container } from 'typedi';
+import { useKoaServer, useContainer } from 'routing-controllers';
 
-const user = new User();
-const router = new Router();
+useContainer(Container);
 const app = new Koa();
-
-router.all('*', async (ctx: Koa.Context) => {
-  ctx.response.body = await user.test(ctx)
+app.use(async (ctx, next) => {
+  console.log(`${ctx.request.method} ${ctx.request.path}`)
+  return await next()
+})
+useKoaServer(app, {
+  classTransformer: true,
+  controllers: [__dirname + '/controllers/**/*{.js,.ts}']
 })
 
-app.use(async (ctx: Koa.Context, next): Promise<any> => {
-  console.log(`${ctx.request.path}`)
-  return await next();
-});
-app
-  .use(router.routes())
-  .use(router.allowedMethods());
-
+app.listen(5000)
+console.log(`app running on port: 5000`)
 export default app;

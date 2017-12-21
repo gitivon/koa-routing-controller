@@ -1,13 +1,28 @@
-import { Context } from 'koa';
-import * as http from 'http';
+import { JsonController, Get, Post, Ctx, Param } from 'routing-controllers'
+import { ApiResponse, UserComponent } from '../../components'
 
+@JsonController("/api/user")
 class User {
 
-  async test (ctx: Context): Promise<any> {
-    ctx.response.type = 'json';
+  @Get("/getLoginUser")
+  async getLoginUser (@UserComponent({required: false}) user): Promise<ApiResponse> {
     return {
-      a: 'HeiHeiHeii~~, u are sb'
+      success: true,
+      data: user
     }
+  }
+
+  @Get("/:id(\d+)")
+  async getOne (@Ctx() ctx, @Param("id") id): Promise<ApiResponse> {
+    return {
+      success: true,
+      data: id
+    }
+  }
+
+  @Post("/login")
+  async login () {
+
   }
 
 }
