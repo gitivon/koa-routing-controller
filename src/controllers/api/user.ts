@@ -4,7 +4,7 @@ import { ApiResponse, UserComponent } from '../../components'
 @JsonController("/api/user")
 class User {
 
-  @Get("/getLoginUser")
+  @Get("/my")
   async getLoginUser (@UserComponent({required: false}) user): Promise<ApiResponse> {
     return {
       success: true,

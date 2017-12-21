@@ -12,7 +12,7 @@ let env = process.env.NODE_ENV || 'dev';
 
 // 设置服务器 log 目录
 if(process.env.npm_lifecycle_event.indexOf('run') >= 0) {
-  pm2_args += ` --log-date-format=\"YYYY-MM-DD HH:mm:ss.SSS\" -i 1 -o /opt/tuniu/logs/app/nodejs/${appName}-out.log -e /opt/tuniu/logs/app/nodejs/${appName}-error.log`;
+  pm2_args += ` --log-date-format=\"YYYY-MM-DD HH:mm:ss.SSS\" -i 1 -o /opt/tuniu/logs/nodejs/app/${appName}-out.log -e /opt/tuniu/logs/nodejs/app/${appName}-error.log`;
   env = process.env.npm_lifecycle_event.split(':')[1];
 }
 const pm2Cmd = `${cmd}pm2 start ./bin/pm2.${env}.config.js --name "${appName}" ${pm2_args}`
