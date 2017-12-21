@@ -42,5 +42,3 @@ gulp.task('dev', () => {
     'show-log'
   )
 })
-
-gulp.task('run', ['tsc', 'pm2-start'])
