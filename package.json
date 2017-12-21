@@ -7,9 +7,9 @@
     "gulp": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "gulp dev",
-    "sit": "gulp run",
-    "pre": "gulp run",
-    "prod": "gulp run"
+    "run:sit": "gulp run",
+    "run:pre": "gulp run",
+    "run:prod": "gulp run"
   },
   "repository": {
     "type": "git",
