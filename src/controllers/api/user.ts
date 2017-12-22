@@ -6,6 +6,7 @@ class User {
 
   @Get("/my")
   async getLoginUser (@UserComponent({required: false}) user): Promise<ApiResponse> {
+    
     return {
       success: true,
       data: user

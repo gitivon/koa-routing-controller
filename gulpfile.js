@@ -14,8 +14,6 @@ let env = process.env.NODE_ENV || 'dev';
 if(process.env.npm_lifecycle_event.indexOf('run') >= 0) {
   pm2_args += ` --log-date-format=\"YYYY-MM-DD HH:mm:ss.SSS\" -i 1 -o /opt/tuniu/logs/app/${appName}-out.log -e /opt/tuniu/logs/app/${appName}-error.log`;
   env = process.env.npm_lifecycle_event.split(':')[1];
-} else {
-  pm2_args += ` --log-date-format=\"YYYY-MM-DD HH:mm:ss.SSS\" -i 1 -o /opt/tuniu/logs/app/${appName}-out.log -e /opt/tuniu/logs/app/${appName}-error.log`;
 }
 const pm2Cmd = `${cmd}pm2 start ./bin/pm2.${env}.config.js --name "${appName}" ${pm2_args}`
 
