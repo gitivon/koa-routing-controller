@@ -10,9 +10,9 @@ const TOKEN_PREFIX = {
 
 const UserComponent = (options?: {required?: boolean}) => {
   return createParamDecorator({
-    required: options && options.required ? true : false,
+    required: !!(options && options.required),
     async value ({ context }) {
-      let token: string = context.cookies.get("TUNIUmuser");
+      let token: string = context.request.get('SESSIONID') || context.cookies.get("TUNIUmuser") || context.cookies.get("muser");
       let user: User | null = null;
       if(token) {
         // 根据 TOKEN_PREFIX 顺序依次从 redis 中获取用户信息

@@ -1,14 +1,38 @@
 import * as Redis from 'ioredis';
 import { InternalServerError } from 'routing-controllers';
 
+let REDIS_CFG: object;
+
+switch(process.env.NODE_ENV) {
+  case 'dev':
+  case 'sit':
+  default:
+    REDIS_CFG = {
+      port: 6379, 
+      host: 'redis1.tuniu-sit.org'
+    };
+    break;
+  case 'pre':
+  case 'prod':
+    REDIS_CFG = {
+      port: 26707, 
+      host: 'hx-mob-master.redis.tuniu.org'
+    };
+    break;
+}
+
 const redis = new Redis({
-  port: 6379, 
-  host: 'redis1.tuniu-sit.org',
+  ...REDIS_CFG,
   reconnectOnError (err): boolean {
     // throw new InternalServerError(err.message);
+    console.log(err)
     return true;
-  }
+  } 
 });
+
+redis.on('error', e => {
+  throw new InternalServerError(e.message);
+})
 
 class User {
 
