@@ -23,10 +23,10 @@ switch(process.env.NODE_ENV) {
 
 const redis = new Redis({
   ...REDIS_CFG,
-  // enableReadyCheck: false,
-  // retryStrategy (times) {
-  //   return Math.min(20 * times, 2000);
-  // },
+  enableReadyCheck: false,
+  retryStrategy (times) {
+    return Math.min(20 * times, 2000);
+  },
   reconnectOnError (err): boolean {
     // throw new InternalServerError(err.message);
     console.log(err)
