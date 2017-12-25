@@ -4,6 +4,7 @@ import { InternalServerError } from 'routing-controllers';
 let REDIS_CFG: object;
 
 switch(process.env.NODE_ENV) {
+  case 'dev':
   case 'sit':
   default:
     REDIS_CFG = {
@@ -11,7 +12,6 @@ switch(process.env.NODE_ENV) {
       host: 'redis1.tuniu-sit.org'
     };
     break;
-    case 'dev':
   case 'pre':
   case 'prod':
     REDIS_CFG = {
@@ -54,6 +54,7 @@ class User {
   }
 
   static async findByCookie(cookie: string): Promise<User|null> {
+    console.log(process.env.NODE_ENV)
     let data = JSON.parse(await redis.get(cookie))
     return data ? new User({
       userId: data.id
