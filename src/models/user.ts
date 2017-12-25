@@ -4,7 +4,6 @@ import { InternalServerError } from 'routing-controllers';
 let REDIS_CFG: object;
 
 switch(process.env.NODE_ENV) {
-  case 'dev':
   case 'sit':
   default:
     REDIS_CFG = {
@@ -12,6 +11,7 @@ switch(process.env.NODE_ENV) {
       host: 'redis1.tuniu-sit.org'
     };
     break;
+    case 'dev':
   case 'pre':
   case 'prod':
     REDIS_CFG = {
@@ -31,7 +31,8 @@ const redis = new Redis({
 });
 
 redis.on('error', e => {
-  throw new InternalServerError(e.message);
+  console.log(e)
+  // throw new InternalServerError(e.message);
 })
 
 class User {

@@ -11,9 +11,7 @@ module.exports = {
       "env": {
         "NODE_ENV": "development"
       },
-      "log_date_format": "YYYY-MM-DD HH:mm:ss",
-      "out_file": "/opt/tuniu/logs/app/api-out.log",
-      "error_file": "/opt/tuniu/logs/app/api-error.log"
+      "log_date_format": "YYYY-MM-DD HH:mm:ss"
     }
   ]
 }

@@ -9,6 +9,7 @@ class User {
     
     return {
       success: true,
+      errorCode: 0,
       data: user
     }
   }
@@ -17,6 +18,7 @@ class User {
   async getOne (@Ctx() ctx, @Param("id") id): Promise<ApiResponse> {
     return {
       success: true,
+      errorCode: 0,
       data: id
     }
   }
