@@ -27,11 +27,6 @@ const redis = new Redis({
   retryStrategy (times) {
     return Math.min(20 * times, 2000);
   },
-  reconnectOnError (err): boolean {
-    // throw new InternalServerError(err.message);
-    console.log(err)
-    return true;
-  } 
 });
 
 redis.on('error', e => {
@@ -58,7 +53,6 @@ class User {
   }
 
   static async findByCookie(cookie: string): Promise<User|null> {
-    console.log(process.env.NODE_ENV)
     let data = JSON.parse(await redis.get(cookie))
     return data ? new User({
       userId: data.id
