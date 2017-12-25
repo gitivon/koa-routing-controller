@@ -4,6 +4,8 @@ cfg.apps[0] = Object.assign(cfg.apps[0], {
   "env": {
     "NODE_ENV": "sit"
   },
+  "out_file": "/opt/tuniu/logs/app/api-out.log",
+  "error_file": "/opt/tuniu/logs/app/api-error.log"
 })
 
 module.exports = cfg
