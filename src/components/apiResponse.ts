@@ -4,7 +4,8 @@ import * as Router from 'koa-router';
 interface ApiResponse {
   success: boolean;
   errorCode: number;
-  message?: [string];
+  msg?: string;
+  message?: string;
   data: any;
 };
 

@@ -1,7 +1,9 @@
-import { JsonController, Get, Post, Ctx, Param } from 'routing-controllers'
+import { JsonController, Get, Post, Ctx, Param, BodyParam, Body, Res } from 'routing-controllers'
 import { ApiResponse, UserComponent } from '../../components'
 import { createHash } from 'crypto'
 import { tsp } from '../../components/http'
+import { default as UserModel } from '../../models/user'
+import { Context } from 'koa'
 
 @JsonController("/api/user")
 class User {
@@ -25,20 +27,23 @@ class User {
     }
   }
 
-  @Get("/login")
-  async login () {
-    let userId = 12
-    let { data } = await tsp('FAB.SPI.CustSearchController.queryByKey', {
-      searchKey: userId,
-      subSystem: 'fab',
-      key: 101
+  @Post("/login")
+  async login (@BodyParam('key', { required: true }) key: string, @BodyParam('password', { required: true }) password: string, @Ctx() ctx: Context) {
+    // 先根据 account 获取 user
+    let user = await UserModel.findByKey(key)
+    // 检查密码是否正确
+    await user.checkPwd(password)
+    // 设置 cookie 信息
+    ctx.cookies.set('TUNIUmuser', user.generateCookie(), {
+      domain: 'tuniu.org'
     })
     return {
       success: true,
       errorCode: 0,
-      data
+      data: user
     }
   }
+
 
 }
 
