@@ -11,15 +11,15 @@ switch(process.env.NODE_ENV) {
   case 'sit':
   default:
     REDIS_CFG = {
-      port: 6379, 
-      host: 'redis1.tuniu-sit.org'
+      port: 00, 
+      host: '**'
     };
     break;
   case 'pre':
   case 'prod':
     REDIS_CFG = {
-      port: 26707, 
-      host: 'hx-mob-master.redis.tuniu.org'
+      port: 00, 
+      host: '**'
     };
     break;
 }
